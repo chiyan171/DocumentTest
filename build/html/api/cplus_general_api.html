@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>通用接口 &mdash; DocumentAI 2.0.1-rc 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="OCR" href="cplus_ocr_api.html" />
+    <link rel="prev" title="通用类型" href="cplus_general_type.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> DocumentAI
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DocumentAI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/introduction.html">DocumentAI 介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/model.html">模型介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/sdk.html">SDK Download</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">接口定义</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cplus_general_type.html">通用类型</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">通用接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cplus_ocr_api.html">OCR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpuls_detection_api.html">Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cplus_tablerec_api.html">TableRec</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cplus_image_process_api.html">ImageProcess</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">平台相关</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cross_platform/Windows_Chinese_path.html">Windows中文路径编码</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DocumentAI</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>通用接口</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/cplus_general_api.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>通用接口<a class="headerlink" href="#id1" title="永久链接至标题"></a></h1>
+<p><strong>#include <a class="reference external" href="#">&lt;sdk_document_ai_api.h&gt;</a></strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>接口名称</strong></th>
+<th style="text-align: left;"><strong>功能</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#api_general_sdk_add_license">sdk_add_license</a></td>
+<td style="text-align: left;">添加license字符串</td>
+</tr>
+<tr>
+<td><a href="#api_general_sdk_add_license_file">sdk_add_license_file</a></td>
+<td style="text-align: left;">添加license文件</td>
+</tr>
+<tr>
+<td><a href="#api_general_sdk_version">sdk_version</a></td>
+<td style="text-align: left;">获取sdk版本号</td>
+</tr>
+<tr>
+<td><a href="#api_general_sdk_model_info">sdk_model_info</a></td>
+<td style="text-align: left;">获取模型信息</td>
+</tr>
+<tr>
+<td><a href="#api_general_sdk_image_create">sdk_image_create</a></td>
+<td style="text-align: left;">根据图片路径创建图像指针并分配内存</td>
+</tr>
+<tr>
+<td><a href="#api_general_sdk_image_create_by_buffer">sdk_image_create_by_buffer</a></td>
+<td style="text-align: left;">根据图片数据创建图像指针并分配内存</td>
+</tr>
+<tr>
+<td><a href="#api_general_sdk_image_crop">sdk_image_crop</a></td>
+<td style="text-align: left;">图像扣取</td>
+</tr>
+<tr>
+<td><a href="#api_general_sdk_image_save">sdk_image_save</a></td>
+<td style="text-align: left;">图像保存</td>
+</tr>
+<tr>
+<td><a href="#api_general_sdk_image_release">sdk_image_release</a></td>
+<td style="text-align: left;">释放图像数据</td>
+</tr>
+<tr>
+<td><a href="#api_general_sdk_handle_release">sdk_handle_release</a></td>
+<td style="text-align: left;">释放模型句柄</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table><p><br /><br /><br />
+<a id = 'api_general_sdk_add_license'><code class="docutils literal notranslate"><span class="pre">sdk_add_license</span></code> </a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_result_t</span><span class="w"></span>
+<span class="nf">sdk_add_license</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">license</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>设置license。若license不正确，所有非通用的接口都不能正常使用</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_result_t</span><span class="w"> </span><span class="n">add_license_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdk_add_license</span><span class="p">(</span><span class="s">&quot;xxxxxxxxxxxx&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="k">if</span><span class="p">(</span><span class="n">add_license_result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">E_DA_SUCCESS</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//add license successful.</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//something went wrong.</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>参数</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>变量名</strong></th>
+<th><strong>输入/输出</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>license</td>
+<td>[in]</td>
+<td>License字符串</td>
+</tr>
+</tbody>
+</table><p><strong>响应</strong></p>
+<p>正常返回E_DA_SUCCESS，否则返回<a class="reference internal" href="cplus_general_type.html"><span class="doc">错误类型</span></a></p>
+<p><br /><br /><br />
+<a id = 'api_general_sdk_add_license_file'><code class="docutils literal notranslate"><span class="pre">sdk_add_license_file</span></code> </a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_result_t</span><span class="w"> </span><span class="nf">sdk_add_license_file</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">license_path</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>设置license。若license不正确，所有非通用的接口都不能正常使用</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_result_t</span><span class="w"> </span><span class="n">add_license_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdk_add_license</span><span class="p">(</span><span class="s">&quot;license_file_path&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="k">if</span><span class="p">(</span><span class="n">add_license_result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">E_DA_SUCCESS</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//add license successful.</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//something went wrong.</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>参数</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>变量名</strong></th>
+<th><strong>输入/输出</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>license_path</td>
+<td>[in]</td>
+<td>License文件路径</td>
+</tr>
+</tbody>
+</table><p><strong>响应</strong></p>
+<p>正常返回E_DA_SUCCESS，否则返回<a class="reference internal" href="cplus_general_type.html"><span class="doc">错误类型</span></a></p>
+<p><br /><br /><br />
+<a id = 'api_general_sdk_version'><code class="docutils literal notranslate"><span class="pre">sdk_version</span></code> </a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_result_t</span><span class="w"></span>
+<span class="nf">sdk_version</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">version</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>获取SDK版本号</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="n">version</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span><span class="w"></span>
+<span class="n">sdk_version</span><span class="p">(</span><span class="n">version</span><span class="p">);</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;sdk version :&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="n">version</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>参数</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>变量名</strong></th>
+<th><strong>输入/输出</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>version</td>
+<td>[out]</td>
+<td>SDK版本指针</td>
+</tr>
+</tbody>
+</table><p><strong>响应</strong></p>
+<p>正常返回E_DA_SUCCESS，否则返回<a class="reference internal" href="cplus_general_type.html"><span class="doc">错误类型</span></a></p>
+<p><br /><br /><br />
+<a id = 'api_general_sdk_model_info'><code class="docutils literal notranslate"><span class="pre">sdk_model_info</span></code> </a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_result_t</span><span class="w"></span>
+<span class="nf">sdk_model_info</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">model_path</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">model_info</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>获取模型信息，调用前需要验证license</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="n">model_info</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span><span class="w"></span>
+<span class="n">da_result_t</span><span class="w"> </span><span class="n">acquire_model_version_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdk_model_info</span><span class="p">(</span><span class="s">&quot;xxxxxxxxxx.model&quot;</span><span class="p">,</span><span class="n">model_info</span><span class="p">);</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">acquire_model_version_result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">E_DA_SUCCESS</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;model info:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="n">model_info</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//something went wrong.</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>参数</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>变量名</strong></th>
+<th><strong>输入/输出</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>model_path</td>
+<td>[in]</td>
+<td>模型路径</td>
+</tr>
+<tr>
+<td>model_info</td>
+<td>[out]</td>
+<td>模型信息指针</td>
+</tr>
+</tbody>
+</table><p><strong>响应</strong></p>
+<p>正常返回E_DA_SUCCESS，否则返回<a class="reference internal" href="cplus_general_type.html"><span class="doc">错误类型</span></a></p>
+<p><br /><br /><br />
+<a id = 'api_general_sdk_image_create'><code class="docutils literal notranslate"><span class="pre">sdk_image_create</span></code> </a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_result_t</span><span class="w"></span>
+<span class="nf">sdk_image_create</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">image_path</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">da_image_t</span><span class="w"> </span><span class="o">*</span><span class="n">image</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>根据图片路径创建图像指针并分配内存。若不使用，需要<a class="reference external" href="#api_general_sdk_image_release">释放</a>该指针，否则会内存泄漏</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_image_t</span><span class="w"> </span><span class="n">image</span><span class="p">;</span><span class="w"></span>
+<span class="n">da_result_t</span><span class="w"> </span><span class="n">create_image_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdk_image_create</span><span class="p">(</span><span class="s">&quot;xxxxxxx.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">image</span><span class="p">);</span><span class="w"></span>
+<span class="k">if</span><span class="p">(</span><span class="n">create_image_result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">E_DA_SUCCESS</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//create image successful</span>
+<span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//something went wrong.</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>参数</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>变量名</strong></th>
+<th><strong>输入/输出</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>image_path</td>
+<td>[in]</td>
+<td>图片路径</td>
+</tr>
+<tr>
+<td>image</td>
+<td>[out]</td>
+<td>输出图像指针所在地址</td>
+</tr>
+</tbody>
+</table><p><strong>响应</strong></p>
+<p>正常返回E_DA_SUCCESS，否则返回<a class="reference internal" href="cplus_general_type.html"><span class="doc">错误类型</span></a></p>
+<p><br /><br /><br />
+<a id = 'api_general_sdk_image_create_by_buffer'><code class="docutils literal notranslate"><span class="pre">sdk_image_create_by_buffer</span></code> </a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_result_t</span><span class="w"></span>
+<span class="nf">sdk_image_create_by_buffer</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">height</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">da_pixel_format_e</span><span class="w"> </span><span class="n">format</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">da_image_t</span><span class="w"> </span><span class="o">*</span><span class="n">image</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>根据图片路径创建图像指针并分配内存。若不使用，需要<a class="reference external" href="#api_general_sdk_image_release">释放</a>该指针，否则会内存泄漏</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_image_t</span><span class="w"> </span><span class="n">image</span><span class="p">;</span><span class="w"></span>
+<span class="n">da_result_t</span><span class="w"> </span><span class="n">create_image_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdk_image_create_by_buffer</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="n">image_data_point</span><span class="p">,</span><span class="n">DA_PIX_FMT_BGR888</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">image</span><span class="p">);</span><span class="w"></span>
+<span class="k">if</span><span class="p">(</span><span class="n">create_image_result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">E_DA_SUCCESS</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//create image successful</span>
+<span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//something went wrong.</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>参数</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>变量名</strong></th>
+<th><strong>输入/输出</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>width</td>
+<td>[in]</td>
+<td>图片宽度</td>
+</tr>
+<tr>
+<td>height</td>
+<td>[in]</td>
+<td>输出图像指针所在地址</td>
+</tr>
+<tr>
+<td>data</td>
+<td>[in]</td>
+<td>图片数据</td>
+</tr>
+<tr>
+<td>format</td>
+<td>[in]</td>
+<td>图片格式</td>
+</tr>
+<tr>
+<td>image</td>
+<td>[out]</td>
+<td>输出图像指针所在地址</td>
+</tr>
+</tbody>
+</table><p><strong>响应</strong></p>
+<p>正常返回E_DA_SUCCESS，否则返回<a class="reference internal" href="cplus_general_type.html"><span class="doc">错误类型</span></a></p>
+<p><br /><br /><br />
+<a id = 'api_general_sdk_image_crop'><code class="docutils literal notranslate"><span class="pre">sdk_image_crop</span></code> </a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_result_t</span><span class="w"></span>
+<span class="nf">sdk_image_crop</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">da_image_t</span><span class="o">*</span><span class="w"> </span><span class="n">image_src</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">da_rect_t</span><span class="w"> </span><span class="o">*</span><span class="n">crop_area</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">da_image_t</span><span class="w"> </span><span class="o">*</span><span class="n">image_dst</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>图像扣取。若不使用，需要<a class="reference external" href="#api_general_sdk_image_release">释放</a>该指针，否则会内存泄漏</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_image_t</span><span class="w"> </span><span class="n">image</span><span class="p">;</span><span class="w"></span>
+<span class="n">sdk_image_create</span><span class="p">(</span><span class="s">&quot;xxxxx.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">image</span><span class="p">);</span><span class="w"></span>
+<span class="n">da_rect_t</span><span class="w"> </span><span class="n">rect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">left</span><span class="p">,</span><span class="n">top</span><span class="p">,</span><span class="n">right</span><span class="p">,</span><span class="n">bottom</span><span class="p">};</span><span class="w"></span>
+<span class="n">da_image_t</span><span class="w"> </span><span class="n">crop_image</span><span class="p">;</span><span class="w"></span>
+<span class="n">da_result_t</span><span class="w"> </span><span class="n">crop_image_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdk_image_crop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rect</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">crop_image</span><span class="p">);</span><span class="w"></span>
+<span class="k">if</span><span class="p">(</span><span class="n">crop_image_result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">E_DA_SUCCESS</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//crop image successful</span>
+<span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//something went wrong.</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>参数</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>变量名</strong></th>
+<th><strong>输入/输出</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>image_src</td>
+<td>[in]</td>
+<td>输入图像指针所在地址</td>
+</tr>
+<tr>
+<td>crop_area</td>
+<td>[in]</td>
+<td>扣图区域</td>
+</tr>
+<tr>
+<td>image_dst</td>
+<td>[out]</td>
+<td>输出图像指针所在地址</td>
+</tr>
+</tbody>
+</table><p><strong>响应</strong></p>
+<p>正常返回E_DA_SUCCESS，否则返回<a class="reference internal" href="cplus_general_type.html"><span class="doc">错误类型</span></a></p>
+<p><br /><br /><br />
+<a id = 'api_general_sdk_image_save'><code class="docutils literal notranslate"><span class="pre">sdk_image_save</span></code> </a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_result_t</span><span class="w"></span>
+<span class="nf">sdk_image_save</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">da_image_t</span><span class="o">*</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">save_path</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>图像保存到指定路径，使用的程序需要在该路径有读写权限</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_image_t</span><span class="w"> </span><span class="n">image</span><span class="p">;</span><span class="w"></span>
+<span class="n">sdk_image_create</span><span class="p">(</span><span class="s">&quot;xxxxx.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">image</span><span class="p">);</span><span class="w"></span>
+<span class="n">da_result_t</span><span class="w"> </span><span class="n">save_image_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdk_image_save</span><span class="p">(</span><span class="o">&amp;</span><span class="n">image</span><span class="p">,</span><span class="s">&quot;xxxxxxx.png&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="k">if</span><span class="p">(</span><span class="n">save_image_result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">E_DA_SUCCESS</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//save image successful</span>
+<span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//something went wrong.</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>参数</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>变量名</strong></th>
+<th><strong>输入/输出</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>image</td>
+<td>[in]</td>
+<td>输入图像指针所在地址</td>
+</tr>
+<tr>
+<td>save_path</td>
+<td>[in]</td>
+<td>图片保存的路径</td>
+</tr>
+</tbody>
+</table><p><strong>响应</strong></p>
+<p>正常返回E_DA_SUCCESS，否则返回<a class="reference internal" href="cplus_general_type.html"><span class="doc">错误类型</span></a></p>
+<p><br /><br /><br />
+<a id = 'api_general_sdk_image_release'><code class="docutils literal notranslate"><span class="pre">sdk_image_release</span></code> </a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_result_t</span><span class="w"></span>
+<span class="nf">sdk_image_release</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">da_image_t</span><span class="w"> </span><span class="o">*</span><span class="n">image</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>释放图像数据</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_image_t</span><span class="w"> </span><span class="n">image</span><span class="p">;</span><span class="w"></span>
+<span class="c1">// do something with image and release it final</span>
+<span class="n">da_result_t</span><span class="w"> </span><span class="n">release_image_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdk_image_release</span><span class="p">(</span><span class="o">&amp;</span><span class="n">image</span><span class="p">);</span><span class="w"></span>
+<span class="k">if</span><span class="p">(</span><span class="n">release_image_result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">E_DA_SUCCESS</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//release image successful</span>
+<span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//something went wrong.</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>参数</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>变量名</strong></th>
+<th><strong>输入/输出</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>image</td>
+<td>[in]</td>
+<td>输入图像指针所在地址</td>
+</tr>
+</tbody>
+</table><p><strong>响应</strong></p>
+<p>正常返回E_DA_SUCCESS，否则返回<a class="reference internal" href="cplus_general_type.html"><span class="doc">错误类型</span></a></p>
+<p><br /><br /><br />
+<a id = 'api_general_sdk_handle_release'><code class="docutils literal notranslate"><span class="pre">sdk_handle_release</span></code> </a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_result_t</span><span class="w"></span>
+<span class="nf">sdk_handle_release</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">da_handle_t</span><span class="o">*</span><span class="w"> </span><span class="n">handle</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>释放已初始化的句柄</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_handle_t</span><span class="w"> </span><span class="n">handle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="c1">// do something with handle and release it final</span>
+<span class="n">da_result_t</span><span class="w"> </span><span class="n">handle_release_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdk_handle_release</span><span class="p">(</span><span class="o">&amp;</span><span class="n">handle</span><span class="p">);</span><span class="w"></span>
+<span class="k">if</span><span class="p">(</span><span class="n">handle_release_result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">E_DA_SUCCESS</span><span class="p">){</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//release handle successful</span>
+<span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//something went wrong.</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>参数</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>变量名</strong></th>
+<th><strong>输入/输出</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>handle</td>
+<td>[in]</td>
+<td>已初始化的句柄</td>
+</tr>
+</tbody>
+</table><p><strong>响应</strong></p>
+<p>正常返回E_DA_SUCCESS，否则返回<a class="reference internal" href="cplus_general_type.html"><span class="doc">错误类型</span></a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cplus_general_type.html" class="btn btn-neutral float-left" title="通用类型" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="cplus_ocr_api.html" class="btn btn-neutral float-right" title="OCR" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022, JeromeYang.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
