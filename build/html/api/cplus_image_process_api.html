@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ImageProcess &mdash; DocumentTest 1.0.0 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> DocumentTest
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">ImageProcess</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DocumentTest</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">ImageProcess</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/cplus_image_process_api.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="imageprocess">
+<h1>ImageProcess<a class="headerlink" href="#imageprocess" title="此标题的永久链接"></a></h1>
+<p><strong>#include <a class="reference external" href="#">&lt;sdk_image_process_api.h&gt;</a></strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>接口名称</strong></th>
+<th style="text-align: left;"><strong>功能</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#api_ocr_c_sdk_image_magic_color_create">sdk_image_magic_color_create</a></td>
+<td style="text-align: left;">创建对图像锐化并增强的句柄</td>
+</tr>
+<tr>
+<td><a href="#api_ocr_c_sdk_image_magic_color_infer">sdk_image_magic_color_infer</a></td>
+<td style="text-align: left;">使用句柄中包含的模型进行图像锐化并增强</td>
+</tr>
+<tr>
+<td><a href="#api_ocr_c_sdk_image_document_scan_create">sdk_image_document_scan_create</a></td>
+<td style="text-align: left;">创建文档切边矫正的句柄</td>
+</tr>
+<tr>
+<td><a href="#api_ocr_c_sdk_image_document_scan_infer">sdk_image_document_scan_infer</a></td>
+<td style="text-align: left;">使用句柄中包含的模型进行文档切边矫正</td>
+</tr>
+</tbody>
+</table><p><a id = 'api_ocr_c_sdk_image_magic_color_create'><code class="docutils literal notranslate"><span class="pre">sdk_image_magic_color_create</span></code> </a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_result_t</span><span class="w"> </span>
+<span class="nf">sdk_image_magic_color_create</span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">config</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">da_handle_t</span><span class="o">*</span><span class="w"> </span><span class="n">handle</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>创建图像锐化并增强句柄，需要先添加license</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="n">config</span><span class="p">[</span><span class="mi">2048</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">model_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;model_save_path/xxxxx.model&quot;</span><span class="p">;</span>
+<span class="n">snprintf</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="mi">2048</span><span class="p">,</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">{&quot;%s&quot;:&quot;%s&quot;}</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="n">CONST_MAGIC_COLOR_MODEL_KEY</span><span class="p">,</span><span class="w"> </span>
+<span class="w">          </span><span class="n">model_path</span><span class="p">.</span><span class="n">c_str</span><span class="p">()</span>
+<span class="p">);</span>
+
+<span class="n">da_handle_t</span><span class="w"> </span><span class="n">handle</span><span class="p">;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdk_image_magic_color_create</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">handle</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">res</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">E_DA_SUCCESS</span><span class="p">){</span>
+<span class="w">  </span><span class="c1">//create magic color handle successful.</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="w">  </span><span class="c1">//something went wrong.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>参数</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>变量名</strong></th>
+<th><strong>输入/输出</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>config</td>
+<td>[in]</td>
+<td>输入模型类别及模型路径配置信息</td>
+</tr>
+<tr>
+<td>handle</td>
+<td>[out]</td>
+<td>输入magic color句柄</td>
+</tr>
+</tbody>
+</table><p><strong>响应</strong></p>
+<p>正常返回E_DA_SUCCESS，否则返回<a class="reference internal" href="cplus_general_type.html"><span class="doc">错误类型</span></a></p>
+<p><a id = 'api_ocr_c_sdk_image_magic_color_infer'><code class="docutils literal notranslate"><span class="pre">sdk_image_magic_color_infer</span></code> </a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_result_t</span><span class="w"> </span>
+<span class="nf">sdk_image_magic_color_infer</span><span class="p">(</span>
+<span class="w">  </span><span class="n">da_handle_t</span><span class="o">*</span><span class="w"> </span><span class="n">handle</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">da_image_t</span><span class="o">*</span><span class="w"> </span><span class="n">input_img</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">da_image_t</span><span class="o">*</span><span class="w"> </span><span class="n">output_img</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>图像锐化并增强</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_handle_t</span><span class="w"> </span><span class="n">handle</span><span class="p">;</span>
+<span class="n">da_image_t</span><span class="w"> </span><span class="n">image</span><span class="p">;</span>
+<span class="n">da_image_t</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdk_image_magic_color_infer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">handle</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="n">res</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">E_DA_SUCCESS</span><span class="p">){</span>
+<span class="w">  </span><span class="c1">//magic color predict successful.</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="w">  </span><span class="c1">//something went wrong.</span>
+<span class="p">}</span>
+
+<span class="n">sdk_handle_release</span><span class="p">(</span><span class="o">&amp;</span><span class="n">handle</span><span class="p">);</span>
+<span class="n">sdk_image_release</span><span class="p">(</span><span class="o">&amp;</span><span class="n">image</span><span class="p">);</span>
+<span class="n">sdk_image_release</span><span class="p">(</span><span class="o">&amp;</span><span class="n">out</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>参数</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>变量名</strong></th>
+<th><strong>输入/输出</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>handle</td>
+<td>[in]</td>
+<td>已初始化的magci color句柄</td>
+</tr>
+<tr>
+<td>input_img</td>
+<td>[in]</td>
+<td>输入图片</td>
+</tr>
+<tr>
+<td>output_img</td>
+<td>[out]</td>
+<td>输出图片</td>
+</tr>
+</tbody>
+</table><p><strong>响应</strong></p>
+<p>正常返回E_DA_SUCCESS，否则返回<a class="reference internal" href="cplus_general_type.html"><span class="doc">错误类型</span></a></p>
+<p><a id = 'api_ocr_c_sdk_image_document_scan_create'><code class="docutils literal notranslate"><span class="pre">sdk_image_document_scan_create</span></code> </a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_result_t</span><span class="w"> </span>
+<span class="nf">sdk_image_document_scan_create</span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">config</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">da_handle_t</span><span class="o">*</span><span class="w"> </span><span class="n">handle</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>创建文档切边矫正句柄，需要先添加license</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="n">config</span><span class="p">[</span><span class="mi">2048</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">document_model_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;model_save_path/xxxxx.model&quot;</span><span class="p">;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">corner_model_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;model_save_path/xxxxx.model&quot;</span><span class="p">;</span>
+<span class="n">snprintf</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="mi">2048</span><span class="p">,</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">{&quot;%s&quot;:&quot;%s&quot;,&quot;%s&quot;:&quot;%s&quot;}</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="n">CONST_DOCUMENT_MODEL_KEY</span><span class="p">,</span><span class="w"> </span><span class="n">document_model_path</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span>
+<span class="w">         </span><span class="n">CONST_CORNER_MODEL_KEY</span><span class="p">,</span><span class="w"> </span><span class="n">corner_model_path</span><span class="p">.</span><span class="n">c_str</span><span class="p">()</span>
+<span class="p">);</span>
+
+<span class="n">da_handle_t</span><span class="w"> </span><span class="n">handle</span><span class="p">;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdk_image_document_scan_create</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">handle</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">res</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">E_DA_SUCCESS</span><span class="p">){</span>
+<span class="w">  </span><span class="c1">//create document scan handle successful.</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="w">  </span><span class="c1">//something went wrong.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>参数</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>变量名</strong></th>
+<th><strong>输入/输出</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>config</td>
+<td>[in]</td>
+<td>输入模型类别及模型路径配置信息</td>
+</tr>
+<tr>
+<td>handle</td>
+<td>[out]</td>
+<td>输入document scan句柄</td>
+</tr>
+</tbody>
+</table><p><strong>响应</strong></p>
+<p>正常返回E_DA_SUCCESS，否则返回<a class="reference internal" href="cplus_general_type.html"><span class="doc">错误类型</span></a></p>
+<p><a id = 'api_ocr_c_sdk_image_document_scan_infer'><code class="docutils literal notranslate"><span class="pre">sdk_image_document_scan_infer</span></code> </a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_result_t</span><span class="w"> </span>
+<span class="nf">sdk_image_document_scan_infer</span><span class="p">(</span>
+<span class="w">  </span><span class="n">da_handle_t</span><span class="o">*</span><span class="w">   </span><span class="n">handle</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">da_image_t</span><span class="o">*</span><span class="w">    </span><span class="n">input_img</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">da_document_t</span><span class="o">*</span><span class="w"> </span><span class="n">output</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>文档切边矫正</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_handle_t</span><span class="w"> </span><span class="n">handle</span><span class="p">;</span>
+<span class="n">da_image_t</span><span class="w"> </span><span class="n">image</span><span class="p">;</span>
+<span class="n">da_document_t</span><span class="w"> </span><span class="n">doc_scan_output</span><span class="p">;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdk_image_document_scan_infer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">handle</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">doc_scan_output</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="n">res</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">E_DA_SUCCESS</span><span class="p">){</span>
+<span class="w">  </span><span class="c1">//document scan predict successful.</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="w">  </span><span class="c1">//something went wrong.</span>
+<span class="p">}</span>
+
+<span class="n">sdk_handle_release</span><span class="p">(</span><span class="o">&amp;</span><span class="n">handle</span><span class="p">);</span>
+<span class="n">sdk_image_release</span><span class="p">(</span><span class="o">&amp;</span><span class="n">doc_scan_output</span><span class="p">.</span><span class="n">image</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>参数</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>变量名</strong></th>
+<th><strong>输入/输出</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>handle</td>
+<td>[in]</td>
+<td>已初始化的document scan句柄</td>
+</tr>
+<tr>
+<td>input_img</td>
+<td>[in]</td>
+<td>输入图片</td>
+</tr>
+<tr>
+<td>output</td>
+<td>[out]</td>
+<td>输出图片内主体文档的位置信息（左上角，右上角，右下角，左下角）以及文档矫正后的图片</td>
+</tr>
+</tbody>
+</table><p><strong>响应</strong></p>
+<p>正常返回E_DA_SUCCESS，否则返回<a class="reference internal" href="cplus_general_type.html"><span class="doc">错误类型</span></a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2023, LuoZhiPeng.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

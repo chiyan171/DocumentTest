@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detection &mdash; DocumentTest 1.0.0 文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> DocumentTest
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Detection</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DocumentTest</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Detection</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/cpuls_detection_api.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="detection">
+<h1>Detection<a class="headerlink" href="#detection" title="此标题的永久链接"></a></h1>
+<p><strong>#include <a class="reference external" href="#">&lt;sdk_document_ai_api.h&gt;</a></strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>接口名称</strong></th>
+<th style="text-align: left;"><strong>功能</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#api_ocr_c_sdk_detection_create">sdk_detection_create</a></td>
+<td style="text-align: left;">根据模型创建目标检测句柄</td>
+</tr>
+<tr>
+<td><a href="#api_ocr_c_sdk_detection_infer">sdk_detection_infer</a></td>
+<td style="text-align: left;">使用句柄中包含的模型进行目标检测</td>
+</tr>
+<tr>
+<td><a href="#api_ocr_c_sdk_detection_release_result">sdk_detection_release_result</a></td>
+<td style="text-align: left;">释放目标检测的内存</td>
+</tr>
+</tbody>
+</table><p><a id = 'api_ocr_c_sdk_detection_create'><code class="docutils literal notranslate"><span class="pre">sdk_detection_create</span></code> </a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_result_t</span>
+<span class="nf">sdk_detection_create</span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">config</span><span class="p">,</span>
+<span class="w">  </span><span class="n">da_handle_t</span><span class="o">*</span><span class="w"> </span><span class="n">handle</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>创建目标检测的句柄，需要先添加license</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="n">detection_config</span><span class="p">[</span><span class="mi">1024</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+<span class="n">snprintf</span><span class="p">(</span><span class="n">detection_config</span><span class="p">,</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">{&quot;%s&quot;:&quot;%s&quot;}</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="n">CONST_LAYOUT_PARSER_MODEL_KEY</span><span class="p">,</span><span class="s">&quot;DA_Layout_Parser_1.0.0.model&quot;</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="n">da_handle_t</span><span class="w"> </span><span class="n">detection_handle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="n">da_result_t</span><span class="w"> </span><span class="n">detection_create_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdk_detection_create</span><span class="p">(</span><span class="n">detection_config</span><span class="p">,</span><span class="o">&amp;</span><span class="n">detection_handle</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="n">detection_create_result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">E_DA_SUCCESS</span><span class="p">){</span>
+<span class="w">  </span><span class="c1">//create detection handle successful.</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="w">  </span><span class="c1">//something went wrong.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>参数</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>变量名</strong></th>
+<th><strong>输入/输出</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>config</td>
+<td>[in]</td>
+<td>输入模型类别及模型路径配置信息</td>
+</tr>
+<tr>
+<td>handle</td>
+<td>[out]</td>
+<td>输出句柄</td>
+</tr>
+</tbody>
+</table><p><strong>响应</strong></p>
+<p>正常返回E_DA_SUCCESS，否则返回<a class="reference internal" href="cplus_general_type.html"><span class="doc">错误类型</span></a></p>
+<p><a id = 'api_ocr_c_sdk_detection_infer'><code class="docutils literal notranslate"><span class="pre">sdk_detection_infer</span></code> </a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_result_t</span>
+<span class="nf">sdk_detection_infer</span><span class="p">(</span>
+<span class="w">  </span><span class="n">da_handle_t</span><span class="o">*</span><span class="w"> </span><span class="n">handle</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">da_image_t</span><span class="w"> </span><span class="o">*</span><span class="n">image</span><span class="p">,</span>
+<span class="w">  </span><span class="n">da_detection_t</span><span class="w"> </span><span class="o">**</span><span class="n">detection_result</span><span class="p">,</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">detection_count</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>目标检测推理</p>
+<p><strong>示例：</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_image_t</span><span class="w"> </span><span class="n">image</span><span class="p">;</span>
+<span class="n">sdk_image_create</span><span class="p">(</span><span class="s">&quot;image.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">image</span><span class="p">);</span>
+<span class="n">da_detection_t</span><span class="w"> </span><span class="o">*</span><span class="n">detection_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">detection_count</span><span class="p">;</span>
+<span class="n">da_result_t</span><span class="w"> </span><span class="n">detection_infer_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdk_detection_infer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">detection_handle</span><span class="p">,</span><span class="o">&amp;</span><span class="n">image</span><span class="p">,</span><span class="o">&amp;</span><span class="n">detection_result</span><span class="p">,</span><span class="o">&amp;</span><span class="n">detection_count</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">detection_infer_result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">E_DA_SUCCESS</span><span class="w"> </span><span class="p">){</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">detection_count</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;name : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">detection_result</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">object</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; , confidence: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">detection_result</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">confidence</span><span class="w"> </span><span class="o">&lt;&lt;</span>
+<span class="w">      </span><span class="s">&quot;, position : [&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">detection_result</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">position</span><span class="p">.</span><span class="n">left</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;,&quot;</span>
+<span class="w">      </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">detection_result</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">position</span><span class="p">.</span><span class="n">top</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;,&quot;</span>
+<span class="w">      </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">detection_result</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">position</span><span class="p">.</span><span class="n">right</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;,&quot;</span>
+<span class="w">      </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">detection_result</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">position</span><span class="p">.</span><span class="n">bottom</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;]&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">sdk_detection_release_result</span><span class="p">(</span><span class="n">detection_result</span><span class="p">);</span>
+<span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;sdk_detection_infer result : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">layout_parser_result</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>参数</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>变量名</strong></th>
+<th><strong>输入/输出</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>handle</td>
+<td>[in]</td>
+<td>已初始化的句柄</td>
+</tr>
+<tr>
+<td>image</td>
+<td>[in]</td>
+<td>输入的image</td>
+</tr>
+<tr>
+<td>detection_result</td>
+<td>[out]</td>
+<td>返回目标检测的结果</td>
+</tr>
+<tr>
+<td>detection_count</td>
+<td>[out]</td>
+<td>返回标检测结果的数量</td>
+</tr>
+</tbody>
+</table><p><strong>响应</strong></p>
+<p>正常返回E_DA_SUCCESS，否则返回<a class="reference internal" href="cplus_general_type.html"><span class="doc">错误类型</span></a></p>
+<p><a id = 'api_ocr_c_sdk_detection_release_result'><code class="docutils literal notranslate"><span class="pre">sdk_detection_release_result</span></code> </a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">da_result_t</span>
+<span class="nf">sdk_detection_release_result</span><span class="p">(</span>
+<span class="w">  </span><span class="n">da_detection_t</span><span class="w"> </span><span class="o">*</span><span class="n">detection_result</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>释放目标检测的内存</p>
+<p><strong>参数</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>变量名</strong></th>
+<th><strong>输入/输出</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>detection_result</td>
+<td>[in]</td>
+<td>通过<code>sdk_detection_infer</code>输出的检测结果</td>
+</tr>
+</tbody>
+</table><p><strong>响应</strong></p>
+<p>正常返回E_DA_SUCCESS，否则返回<a class="reference internal" href="cplus_general_type.html"><span class="doc">错误类型</span></a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2023, LuoZhiPeng.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

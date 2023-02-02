@@ -7,14 +7,30 @@ Welcome to DocumentTest's documentation!
 ========================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 1
+   :caption: DocumentAI
+   :name: introduction
 
+   guide/introduction
+   guide/model
+   guide/sdk
 
+.. toctree::
+   :maxdepth: 1
+   :caption: 接口定义
+   :name: sec-quick-start
 
-Indices and tables
-==================
+   api/cplus_pipeline_api
+   api/cplus_general_type
+   api/cplus_general_api
+   api/cplus_ocr_api
+   api/cpuls_detection_api
+   api/cplus_tablerec_api
+   api/cplus_image_process_api
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. toctree::
+   :maxdepth: 1
+   :caption: 平台相关
+   :name: platform_about
+
+   cross_platform/Windows_Chinese_path
