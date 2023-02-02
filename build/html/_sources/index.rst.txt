@@ -20,7 +20,6 @@ Welcome to DocumentTest's documentation!
    :caption: 接口定义
    :name: sec-quick-start
 
-   api/developer_guide_android_1.5.0
    api/cplus_general_type
    api/cplus_general_api
    api/cplus_ocr_api
